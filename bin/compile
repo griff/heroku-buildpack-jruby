@@ -105,7 +105,7 @@ function jbundle_install {
     echo "-----> Installing dependencies with JBundler"
 
     cd $BUILD_DIR
-    JBUNDLE_LOCAL_REPOSITORY=vendor/jbundler jruby $JRUBY_OPTS -r openssl -S jbundle install | indent
+    JBUNDLE_LOCAL_REPOSITORY=vendor/jbundler jruby $JRUBY_OPTS bin/jbundle install | indent
     echo "JBUNDLE_LOCAL_REPOSITORY=vendor/jbundler" >> $BUILD_DIR/.profile.d/jbundle_config.sh
 
     echo "Dependencies installed" | indent
