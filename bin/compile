@@ -201,3 +201,4 @@ precompile_assets
 # install_rails_log_stdout
 # install_rails3_server_static_assets
 
+echo "JRUBY_OPTS=\"--$MODE \$JRUBY_OPTS\"" >> $BUILD_DIR/.profile.d/jruby_mode.sh
