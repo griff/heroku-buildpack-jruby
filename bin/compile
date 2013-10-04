@@ -105,8 +105,9 @@ function jbundle_install {
     echo "-----> Installing dependencies with JBundler"
 
     cd $BUILD_DIR
-    JBUNDLE_LOCAL_REPOSITORY=vendor/jbundler jruby $JRUBY_OPTS bin/jbundle install | indent
+    JBUNDLE_LOCAL_REPOSITORY=$BUILD_DIR/vendor/jbundler jruby $JRUBY_OPTS bin/jbundle install | indent
     echo "JBUNDLE_LOCAL_REPOSITORY=vendor/jbundler" >> $BUILD_DIR/.profile.d/jbundle_config.sh
+    sed -i "s/${BUILD_DIR//\//\\/}\///g" .jbundler/classpath.rb 
 
     echo "Dependencies installed" | indent
   fi
