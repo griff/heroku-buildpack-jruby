@@ -104,6 +104,8 @@ function jbundle_install {
   if [ -f $BUILD_DIR/Jarfile ]; then
     echo "-----> Installing dependencies with JBundler"
 
+    export JBUNDLE_LOCAL_REPOSITORY=$CACHE_DIR/.m2/repository
+
     cd $BUILD_DIR
     jruby $JRUBY_OPTS bin/jbundle install --deployment | indent
 
