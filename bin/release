@@ -2,9 +2,7 @@
 
 cat << EOF
 ---
-addons:
 config_vars:
-  PATH: bin:jruby/bin:.jdk/bin:/usr/bin:/bin
   RACK_ENV: production
   RAILS_ENV: production
   JRUBY_OPTS: -J-Xmx400m -J-XX:+UseCompressedOops -J-noverify
