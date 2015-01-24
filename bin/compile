@@ -47,7 +47,7 @@ function download_jruby_and_install_default_gems {
     PATH=$CACHE_DIR/jruby-$VERSION/bin:$PATH
 
     echo "-----> Installing Bundler and Rake"
-    jruby $JRUBY_OPTS -S jgem install bundler rake | indent
+    jruby $JRUBY_OPTS -S jgem install bundler rake | indent; test ${PIPESTATUS[0]} -eq 0
   fi
 }
 
@@ -74,7 +74,7 @@ function bundle_install {
   echo "-----> Installing dependencies with Bundler"
 
   cd $BUILD_DIR
-  jruby $JRUBY_OPTS -S bundle install --without development:test --binstubs --deployment --clean | indent
+  jruby $JRUBY_OPTS -S bundle install --without development:test --binstubs --deployment --clean | indent; test ${PIPESTATUS[0]} -eq 0
 
   echo "Dependencies installed" | indent
 }
@@ -95,7 +95,7 @@ function jbundle_install {
     export JBUNDLE_LOCAL_REPOSITORY=$CACHE_DIR/.m2/repository
 
     cd $BUILD_DIR
-    jruby $JRUBY_OPTS bin/jbundle install --deployment | indent
+    jruby $JRUBY_OPTS bin/jbundle install --deployment | indent; test ${PIPESTATUS[0]} -eq 0
 
     echo "Dependencies installed" | indent
   fi
@@ -180,7 +180,7 @@ function precompile_assets {
   if ( env RAILS_ENV=production RAILS_GROUPS=assets jruby $JRUBY_OPTS -S bin/rake --dry-run --silent assets:precompile )
   then
     echo "-----> Precompiling assets"
-    env RAILS_ENV=production RAILS_GROUPS=assets DATABASE_URL=postgres://user:pass@127.0.0.1/dbname jruby $JRUBY_OPTS -S bin/rake assets:precompile 2>&1 | indent
+    env RAILS_ENV=production RAILS_GROUPS=assets DATABASE_URL=postgres://user:pass@127.0.0.1/dbname jruby $JRUBY_OPTS -S bin/rake assets:precompile 2>&1 | indent; test ${PIPESTATUS[0]} -eq 0
   fi
 }
 
