@@ -95,7 +95,7 @@ function jbundle_install {
     export JARS_HOME=$CACHE_DIR/.m2/repository
 
     cd $BUILD_DIR
-    jruby $JRUBY_OPTS bin/jbundle install --debug --deployment | indent; test ${PIPESTATUS[0]} -eq 0
+    jruby $JRUBY_OPTS bin/jbundle install --debug --vendor | indent; test ${PIPESTATUS[0]} -eq 0
 
     echo "Dependencies installed" | indent
   fi
