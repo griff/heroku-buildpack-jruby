@@ -46,8 +46,8 @@ function download_jruby_and_install_default_gems {
     curl $JRUBY_TAR -s -o - | tar xzf - -C $CACHE_DIR/
     PATH=$CACHE_DIR/jruby-$VERSION/bin:$PATH
 
-    echo "-----> Installing Bundler and Rake"
-    jruby $JRUBY_OPTS -S jgem install bundler rake | indent; test ${PIPESTATUS[0]} -eq 0
+    echo "-----> Installing Bundler"
+    jruby $JRUBY_OPTS -S jgem install bundler | indent; test ${PIPESTATUS[0]} -eq 0
   fi
 }
 
